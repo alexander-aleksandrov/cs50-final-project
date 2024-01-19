@@ -39,9 +39,9 @@ def changepass():
     if request.method == "POST":
         newpassword = request.form.get("newpassword")
         if not newpassword:
-            return apology("must provide new password", 403)
+            return error("must provide new password", 403)
         elif not newpassword == request.form.get("newpassword_confirm"):
-            return apology("passwords not equal", 403)
+            return error("passwords not equal", 403)
         new_hash = generate_password_hash(newpassword)
         db.execute("UPDATE users SET hash = ? WHERE id = ?", new_hash, session["user_id"])
         return redirect("/login")
@@ -60,11 +60,11 @@ def login():
     if request.method == "POST":
         # Ensure username was submitted
         if not request.form.get("username"):
-            return apology("must provide username", 403)
+            return error("must provide username", 403)
 
         # Ensure password was submitted
         elif not request.form.get("password"):
-            return apology("must provide password", 403)
+            return error("must provide password", 403)
 
         # Query database for username
         rows = db.execute(
@@ -75,7 +75,7 @@ def login():
         if len(rows) != 1 or not check_password_hash(
             rows[0]["hash"], request.form.get("password")
         ):
-            return apology("invalid username and/or password", 403)
+            return error("invalid username and/or password", 403)
 
         # Remember which user has logged in
         session["user_id"] = rows[0]["id"]
@@ -106,14 +106,14 @@ def register():
         username = request.form.get("username")
 
         if not username:
-            return apology("must provide username", 400)
+            return error("must provide username", 400)
         registered_users = db.execute("SELECT COUNT(username) FROM users WHERE username = ?", username)
         if registered_users[0]["COUNT(username)"] == 1:
-            return apology("This username not allowed", 400)
+            return error("This username not allowed", 400)
         if not request.form.get("password"):
-            return apology("must provide password", 400)
+            return error("must provide password", 400)
         if not request.form.get("password") == request.form.get("confirmation"):
-            return apology("passwords not equal", 400)
+            return error("passwords not equal", 400)
 
         password_hash = generate_password_hash(request.form.get("password"))
         db.execute("INSERT INTO users (username, hash) VALUES (?, ?)", request.form.get("username"), password_hash)
