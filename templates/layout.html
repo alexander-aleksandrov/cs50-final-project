@@ -6,29 +6,31 @@
         <meta name="viewport" content="initial-scale=1, width=device-width">
         <link href="/static/styles.css" rel="stylesheet">
 
-        <title>Rethink{% block title %}{% endblock %}</title>
+        <title>ReThink{% block title %}{% endblock %}</title>
         <script defer src="{% block script %}{% endblock %}"></script>
         <script src="https://kit.fontawesome.com/a7a1e2a97e.js" crossorigin="anonymous"></script>
     </head>
 
     <body>
-        <nav class="bg-light border navbar navbar-expand-md navbar-light">
-            <div class="container-fluid">
-                <div class="collapse navbar-collapse" id="navbar">
+        <nav class=" yl">
+            <div class="navbar">
+                <div>
+                    <a class="navbar-brand" href="/">
+                        <img src="/static/logo.png" width="60" alt="Home">
+                        ReThink
+                    </a>
+                </div>
+                <div class="" id="navbar">
                     {% if session["user_id"] %}
-                        <ul class="navbar-nav me-auto mt-2">
-                            <li class="nav-item"><a class="nav-link" href="/quote">Quote</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/buy">Buy</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/sell">Sell</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/addcash">Add Cash</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/history">History</a></li>
+                        <ul class="navbar-nav">
+                            <li class="nav-item"><a class="nav-link" href="/multiply">Multiply Challenge</a></li>
                         </ul>
-                        <ul class="navbar-nav ms-auto mt-2">
+                        <ul class="navbar-nav">
                             <li class="nav-item"><a class="nav-link" href="/changepass">Change Password</a></li>
                             <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
                         </ul>
                     {% else %}
-                        <ul class="navbar-nav ms-auto mt-2">
+                        <ul class="navbar-nav">
                             <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
                             <li class="nav-item"><a class="nav-link" href="/login">Log In</a></li>
                         </ul>
@@ -37,7 +39,7 @@
             </div>
         </nav>
 
-        <main class="main-container">
+        <main class="main-container yl">
             {% block main %}{% endblock %}
         </main>
 

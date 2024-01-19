@@ -10,6 +10,7 @@ from helpers import error, login_required
 
 # Configure application
 app = Flask(__name__)
+app.config['TEMPLATES_AUTO_RELOAD'] = True
 
 # Configure session to use filesystem (instead of signed cookies)
 app.config["SESSION_PERMANENT"] = False
@@ -27,8 +28,15 @@ def after_request(response):
     response.headers["Pragma"] = "no-cache"
     return response
 
-@app.route("/")
+
+@app.route("/", methods=["GET", "POST"])
 def index():
+    script = ""  
+    return render_template("index.html", script=script)
+
+@app.route("/multiply", methods=["GET", "POST"])
+@login_required
+def multiply():
     script = "/static/multiply.js"  
     return render_template("multiply.html", script=script)
 
@@ -90,7 +98,6 @@ def login():
 
 @app.route("/logout")
 def logout():
-    """Log user out"""
 
     # Forget any user_id
     session.clear()
@@ -101,7 +108,6 @@ def logout():
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
-    """Register user"""
     if request.method == "POST":
         username = request.form.get("username")
 
