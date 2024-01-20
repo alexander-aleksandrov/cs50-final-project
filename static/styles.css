@@ -223,3 +223,11 @@
     border-width: 1px;
     border-style: solid;
   }
+
+  .footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    margin-top: auto;
+  }

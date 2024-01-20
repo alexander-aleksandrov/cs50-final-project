@@ -18,27 +18,46 @@ const start = () => {
   createNewExample();
   counter = 0;
   let i = 60;
-  score.innerHTML = `Счёт: ${counter}`;
+  score.innerHTML = `Score: ${counter}`;
   int = setInterval(() => {
     i--;
-    timer.innerHTML = `${i} сек`;
+    timer.innerHTML = `${i} sec`;
   }, 1000);
   setTimeout(() => {
     clearInterval(int);
     stop();
   }, 60000);
-  button.textContent = "Закончить";
+  button.textContent = "Finish";
   button.classList.add("started");
   createVariants();
 };
 
 const stop = () => {
   clearInterval(int);
-  timer.innerHTML = "60 сек";
-  button.textContent = "Начать";
+  timer.innerHTML = "60 sec";
+  button.textContent = "Begin";
   button.classList.remove("started");
   answers.innerHTML = "";
+  
+  const data = {score: counter};
+
+  
+  fetch('/record-multiply-score', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log('Success:', data);
+  })
+  .catch((error) => {
+    console.error('Error:', error);
+  });
 };
+
 
 window.addEventListener("keydown", (e) => {
   console.log(variants[0].innerText);
@@ -85,7 +104,7 @@ function checkAnswer(i) {
     calcResult.classList.remove("no-answer");
     calcResult.classList.remove("wrong");
     calcResult.classList.add("correct");
-    score.innerHTML = `Счёт: ${++counter}`;
+    score.innerHTML = `Score: ${++counter}`;
     createNewExample();
     createVariants();
   } else {

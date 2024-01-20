@@ -17,6 +17,8 @@ app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
+game = ["multiply"]
+
 # Configure CS50 Library to use SQLite database
 db = SQL("sqlite:///rethink.db")
 
@@ -29,17 +31,29 @@ def after_request(response):
     return response
 
 
-@app.route("/", methods=["GET", "POST"])
+@app.route("/")
 def index():
     script = ""  
     return render_template("index.html", script=script)
 
-@app.route("/multiply", methods=["GET", "POST"])
+@app.route("/multiply")
 @login_required
 def multiply():
     script = "/static/multiply.js"  
     return render_template("multiply.html", script=script)
 
+@app.route("/record-multiply-score", methods=["GET", "POST"])
+@login_required
+def end_multiply_round():
+    if request.method == "POST":
+        user_id = session["user_id"]
+        data = request.get_json()
+        score = data["score"]
+        date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        db.execute("INSERT INTO scores (user_id, game, score, date) VALUES (?, ?, ?, ?)", user_id, game[0], score, date)
+        return redirect("/multiply")
+    else:
+        return redirect("/multiply")
 
 @app.route("/changepass", methods=["GET", "POST"])
 @login_required
