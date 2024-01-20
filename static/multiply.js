@@ -7,6 +7,7 @@ const score = document.querySelector(".score");
 const timer = document.querySelector(".timer");
 const answers = document.querySelector(".answers");
 const variants = document.getElementsByClassName("variant");
+const multiplyLink = document.getElementById("multiply-link");
 
 createNewExample();
 setAnswerToQuestion();
@@ -40,9 +41,11 @@ const stop = () => {
   button.classList.remove("started");
   answers.innerHTML = "";
   
+  setAnswerToQuestion();
+  score.innerHTML = `Last Score: ${counter}`;
+
   const data = {score: counter};
 
-  
   fetch('/record-multiply-score', {
     method: 'POST',
     headers: {
@@ -57,7 +60,7 @@ const stop = () => {
   .catch((error) => {
     console.error('Error:', error);
   });
-  setAnswerToQuestion();
+  
 };
 
 
@@ -113,6 +116,7 @@ function checkAnswer(i) {
     calcResult.classList.remove("no-answer");
     calcResult.classList.add("wrong");
     calcResult.classList.add("accepted");
+    score.innerHTML = `Score: ${--counter}`;
     setTimeout(() => {
       calcResult.classList.remove("accepted");
     }, 500);
@@ -177,5 +181,7 @@ function createNewExample() {
 function setAnswerToQuestion() {
   calcResult.innerText = "?";
   calcResult.classList.remove("no-answer");
+  calcResult.classList.remove("accepted");
+  calcResult.classList.remove("wrong");
   calcResult.classList.add("initial");
 }
