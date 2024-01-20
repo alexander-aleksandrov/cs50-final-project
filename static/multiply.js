@@ -9,6 +9,7 @@ const answers = document.querySelector(".answers");
 const variants = document.getElementsByClassName("variant");
 
 createNewExample();
+setAnswerToQuestion();
 
 let int = 0;
 let counter = 0;
@@ -56,6 +57,7 @@ const stop = () => {
   .catch((error) => {
     console.error('Error:', error);
   });
+  setAnswerToQuestion();
 };
 
 
@@ -157,6 +159,7 @@ function getNumbers() {
 }
 
 function createNewExample() {
+  calcResult.classList.add("no-answer");
   let i = 0;
   let j = 0;
   do {
@@ -168,5 +171,11 @@ function createNewExample() {
   rightOperand.innerText = j;
   calcResult.innerText = i * j;
   calcResult.classList.remove("correct");
-  calcResult.classList.add("no-answer");
+  calcResult.classList.add("initial");
+}
+
+function setAnswerToQuestion() {
+  calcResult.innerText = "?";
+  calcResult.classList.remove("no-answer");
+  calcResult.classList.add("initial");
 }

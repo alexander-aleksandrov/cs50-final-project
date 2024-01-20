@@ -10,21 +10,21 @@
 
 {% block main %}
 <main class="main-container yl">
-<div class="timer">60 sec</div>
+  <div class="timer">60 sec</div>
 
-<div class="example">
-  <div id="left-operand">6</div>
-  <i class="fa-solid fa-xmark"></i>
-  <div id="right-operand">8</div>
-  <span>=</span>
-  <div class="calc-result no-answer" id="calc-result">48</div>
-</div>
+  <div class="example">
+    <div id="left-operand">6</div>
+    <i class="fa-solid fa-xmark"></i>
+    <div id="right-operand">8</div>
+    <span>=</span>
+    <div class="calc-result no-answer" id="calc-result">?</div>
+  </div>
 
-<div class="answers"></div>
-<button id="button">Begin</button>
-<div class="score">Score: 0</div>
-<p id="message" hidden aria-hidden="true">
-  Your browser doesn't support Speech Recognition. Sorry.
-</p>
+  <div class="answers"></div>
+  <button id="button">Begin</button>
+  <div class="score">Score: 0</div>
+  <p id="message" hidden aria-hidden="true">
+    Your browser doesn't support Speech Recognition. Sorry.
+  </p>
 </main>
 {% endblock %}

@@ -118,6 +118,12 @@
     border-radius: 4px;
     color: #dbdad8;
   }
+  .exmaple .initial{
+    background-color: white;
+    padding: 0 4px;
+    border-radius: 4px;
+    color: black;
+  }
   
   .answers {
     width: 350px;
