@@ -1,11 +1,8 @@
 # ReThink
 #### Video Demo:  <URL HERE>
-#### Description: This project is dedicated to resilvo a problem that I used to stackle when my 9 years olsd sun had some trubles with learning multiplication table. So I decided to help him cause he is in love with games and competitions with his friends. 
+#### Description: This project is dedicated to resolving a problem that I used to struggle with when my 9-year-old son had some troubles learning the multiplication table. So, I decided to help him because he is in love with games and competitions with his friends.
 
 1. Database
 2. Flask app
 3. Site 
 4. JS Games 
-
-Stats - longest score, total solved, increase time in case of correct answer +5 sec 
-   

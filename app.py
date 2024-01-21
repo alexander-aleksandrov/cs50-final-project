@@ -64,16 +64,16 @@ def end_multiply_round():
 @login_required
 def changepass():
     if request.method == "POST":
-        newpassword = request.form.get("newpassword")
+        newpassword = request.form.get("password")
         if not newpassword:
-            return error("must provide new password", 403)
-        elif not newpassword == request.form.get("newpassword_confirm"):
-            return error("passwords not equal", 403)
+            return error("must provide new password", 400)
+        elif not newpassword == request.form.get("confirmation"):
+            return error("passwords not equal", 400)
         new_hash = generate_password_hash(newpassword)
         db.execute("UPDATE users SET hash = ? WHERE id = ?", new_hash, session["user_id"])
         return redirect("/login")
     else:
-        return render_template("change_password.html")
+        return render_template("changepass.html")
 
 
 @app.route("/login", methods=["GET", "POST"])
