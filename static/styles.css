@@ -36,6 +36,7 @@
   main{
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
     align-items: center;
     background-color: #fff;
     border-radius: 12px;
@@ -45,7 +46,8 @@
   }
   .game {
     display: flex;
-    flex:2;
+    flex:3;
+    order:1;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
@@ -57,14 +59,38 @@
   }
   .stats{
     flex:1;
+    order:2;
     width: auto; 
-    height: 400px; 
-    overflow-y: auto; 
     overflow-x: hidden; 
     border: 1px solid black;
     align-self: flex-start;
   }
   
+  @media (max-width: 600px) {
+    main {
+      flex-direction: column;
+    }
+    .game {
+      order: 2;
+    }
+  
+    .stats {
+      order: 1;
+      align-self: center;
+    }
+  }
+  .stats table {
+    width: 100%;
+    border-collapse: collapse; 
+  }
+  
+  .stats th {
+    border: 1px solid red; /* Граничная линия ячеек */
+    padding: 10px; /* Отступы внутри ячеек */
+  }
+  .th-label{
+    text-align: right;
+  }
   .timer {
     background-color: #d5f1c1;
     margin-bottom: 4em;

@@ -6,3 +6,6 @@
 2. Flask app
 3. Site 
 4. JS Games 
+
+Stats - longest score, total solved, increase time in case of correct answer +5 sec 
+   

@@ -26,11 +26,18 @@
     <button id="button">Begin</button>
   </div>
   <div class="stats">
-    <ul>
-      {%for score in stats%}
-      <li>{{score}}</li>
-      {%endfor%}
-    </ul>
+    <table>
+      <tbody>
+        <tr>
+          <th class="th-label">Your Highest Score: </th>
+          <th>{{highScore}}</th>
+        </tr>
+        <tr>
+          <th class="th-label">Total solved:  </th>
+          <th>{{totalSolved}}</th>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </main>
 {% endblock %}

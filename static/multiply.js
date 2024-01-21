@@ -15,15 +15,16 @@ setAnswerToQuestion();
 let int = 0;
 let counter = 0;
 let running = false;
+let interval = 0;
 
 const start = () => {
   createNewExample();
   counter = 0;
-  let i = 60;
+  interval = 60;
   score.innerHTML = `Score: ${counter}`;
   int = setInterval(() => {
-    i--;
-    timer.innerHTML = `${i} sec`;
+    interval--;
+    timer.innerHTML = `${interval} sec`;
   }, 1000);
   setTimeout(() => {
     clearInterval(int);
@@ -33,6 +34,19 @@ const start = () => {
   button.classList.add("started");
   createVariants();
 };
+
+function changeTimer(delta) {
+  clearInterval(int);
+  interval += delta;
+  int = setInterval(() => {
+    timer.innerHTML = `${interval} sec`;
+    interval--;
+  }, 1000);
+  setTimeout(() => {
+    clearInterval(int);
+    stop();
+  }, interval * 1000);
+}
 
 const stop = () => {
   clearInterval(int);
@@ -112,11 +126,13 @@ function checkAnswer(i) {
     score.innerHTML = `Score: ${++counter}`;
     createNewExample();
     createVariants();
+    changeTimer(+5);
   } else {
     calcResult.classList.remove("no-answer");
     calcResult.classList.add("wrong");
     calcResult.classList.add("accepted");
     score.innerHTML = `Score: ${--counter}`;
+    changeTimer(-2);
     setTimeout(() => {
       calcResult.classList.remove("accepted");
     }, 500);

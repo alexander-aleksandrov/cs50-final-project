@@ -41,8 +41,10 @@ def multiply():
     script = "/static/multiply.js"  
     result = db.execute("SELECT score FROM scores WHERE user_id = ? AND game = ? ORDER BY date DESC LIMIT 1", session["user_id"], game[0])
     lastScore = result[0]['score'] if result else 0
-    stats = db.execute("SELECT AVG(score) AS average, MAX(score) AS maximum, MIN(score) AS minimum FROM scores WHERE user_id = ? AND game = ?", session["user_id"], game[0])
-    return render_template("multiply.html", script=script, lastScore=lastScore, stats=stats)
+    highScore = db.execute("SELECT MAX(score) FROM scores WHERE user_id = ? AND game = ?", session["user_id"], game[0])[0]['MAX(score)']
+    totalSolved = db.execute("SELECT SUM(score) FROM scores WHERE user_id = ? AND game = ? AND score > 0", session["user_id"], game[0])[0]['SUM(score)']
+
+    return render_template("multiply.html", script=script, lastScore=lastScore, highScore=highScore, totalSolved= totalSolved)
 
 @app.route("/record-multiply-score", methods=["GET", "POST"])
 @login_required
