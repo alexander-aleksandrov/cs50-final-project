@@ -17,7 +17,7 @@ app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
-game = ["multiply"]
+game = ["multiply", "tiles"]
 
 # Configure CS50 Library to use SQLite database
 db = SQL("sqlite:///rethink.db")
@@ -32,8 +32,19 @@ def after_request(response):
 
 @app.route("/")
 def index():
-    script = ""  
-    return render_template("index.html", script=script)
+    users = db.execute("SELECT username, MAX(score) FROM users JOIN scores ON users.id=scores.user_id GROUP BY user_id ORDER BY MAX(score) DESC LIMIT 10")
+    return render_template("index.html", users=users)
+
+@app.route("/tiles", methods=["GET", "POST"])
+@login_required
+def tiles():
+    script = "/static/tiles.js"  
+    result = db.execute("SELECT score FROM scores WHERE user_id = ? AND game = ? ORDER BY date DESC LIMIT 1", session["user_id"], game[0])
+    lastScore = result[0]['score'] if result else 0
+    highScore = db.execute("SELECT MAX(score) FROM scores WHERE user_id = ? AND game = ?", session["user_id"], game[1])[0]['MAX(score)']
+    totalSolved = db.execute("SELECT SUM(score) FROM scores WHERE user_id = ? AND game = ? AND score > 0", session["user_id"], game[1])[0]['SUM(score)']
+
+    return render_template("tiles.html", script=script, lastScore=lastScore, highScore=highScore, totalSolved= totalSolved)
 
 @app.route("/multiply")
 @login_required

@@ -4,12 +4,35 @@
     : Home
 {% endblock %}
 
-{% block script %}
-""
-{% endblock %}
 
 {% block main %}
-<main class="main-container yl">
-    important information here
+<main class="">
+   <div class="leaderboard ">
+        <div class="leaderboard-title">Leaderboard</div>
+        <table class="leaderboard-table ">
+            <colgroup>
+                <col style="width: 50px;"> 
+                <col> 
+                <col style="width: 40px;">
+            </colgroup>
+            <thead>
+                <tr>
+                    <th >Rank</th>
+                    <th class ="user-name">Username</th>
+                    <th>Score</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for user in users %}
+                <tr class = "row">
+                    <td style="text-align: center;">{{loop.index}}</td>
+                    <td class ="user-name">{{user["username"]}}</td>
+                    <td>{{user["MAX(score)"]}}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+   </div>
 </main>
 {% endblock %}
