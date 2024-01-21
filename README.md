@@ -6,3 +6,8 @@
 2. Flask app
 3. Site 
 4. JS Games 
+
+add listeners
+make stop function 
+make listeners 
+make scores savings 

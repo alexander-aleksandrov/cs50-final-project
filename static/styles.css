@@ -156,6 +156,53 @@
     width: 350px;
   }
   
+  .tiles {
+    display: flex;
+    flex-direction: column;
+    
+  }
+
+  .tile {
+    height: 81px;
+    width: 81px;
+    background: transparent;
+    margin: 10px;
+    border-radius: 4px;
+    border: 1px solid green;
+    cursor: pointer;
+  }
+  
+  .tile-selected{
+    
+  }
+  .tile-shown{
+    background-color: #565851;
+  }
+  .tile-correct {
+
+  }
+  .tile-wrong{}
+
+  .lvl2, .lvl3, .lvl4{
+    height: 81px;
+    width: 81px;
+  }
+  .lvl5{
+    height: 60px;
+    width: 60px;
+    margin: 7px;
+  }
+  .lvl6{
+    height: 50px;
+    width: 50px;
+    margin: 5px;
+  }
+  .lvl7{
+    height: 45px;
+    width: 45px;
+    margin: 4px;
+  }
+
   .variant {
     height: 81px;
     width: 81px;

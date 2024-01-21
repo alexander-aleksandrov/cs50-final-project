@@ -7,7 +7,6 @@ const score = document.querySelector(".score");
 const timer = document.querySelector(".timer");
 const answers = document.querySelector(".answers");
 const variants = document.getElementsByClassName("variant");
-const multiplyLink = document.getElementById("multiply-link");
 
 createNewExample();
 setAnswerToQuestion();
