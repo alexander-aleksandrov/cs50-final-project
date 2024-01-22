@@ -44,6 +44,42 @@
     padding-top: 2em;
     text-align: center;
   }
+  .home{
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .leaderboard{
+    display: flex;
+    order:1;
+    flex:2;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    width: 350px;
+    margin: 0 auto;
+  }
+  .leaderboard-title{
+    text-align: center;
+    padding: 10px;
+    font-size: 1.5rem;
+  }
+
+  .home-text{
+    order:2;
+    padding: 10px;
+    flex:5;
+
+  }
+  .home-text .header{
+    font-size: 24px;
+  }
+  .home-text .text{
+    display: flex;
+    justify-content: center;
+    font-size: 18px;
+
+  }
   .game {
     display: flex;
     flex:3;
@@ -77,6 +113,12 @@
       order: 1;
       align-self: center;
     }
+    .leaderboard{
+      order:2;
+    }
+    .home-text{
+      order:1;
+    }
   }
   .stats table {
     width: 100%;
@@ -101,8 +143,6 @@
   }
   
   .example {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -314,19 +354,7 @@
     justify-content: end;
   }
 
-  .leaderboard{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 10px;
-    width: 250px;
-    margin: 0 auto;
-  }
-  .leaderboard-title{
-    text-align: center;
-    padding: 10px;
-    font-size: 1.5rem;
-  }
+  
   td, th{
     border-bottom: 1px solid black;
   }

@@ -6,8 +6,8 @@
 
 
 {% block main %}
-<main class="">
-   <div class="leaderboard ">
+<main class="home yl">
+   <div class="leaderboard yl ">
         <div class="leaderboard-title">Leaderboard</div>
         <table class="leaderboard-table ">
             <colgroup>
@@ -27,12 +27,23 @@
                 <tr class = "row">
                     <td style="text-align: center;">{{loop.index}}</td>
                     <td class ="user-name">{{user["username"]}}</td>
-                    <td>{{user["MAX(score)"]}}</td>
+                    <td>
+                        {% if user["MAX(score)"] is none %}
+                            0
+                        {% else %}
+                            {{ user["MAX(score)"] }}
+                        {% endif %}
+                    </td>
                 </tr>
             {% endfor %}
             </tbody>
         </table>
+    </div>
+    <div class="home-text yl">
+        <h1 class ="header">Welcome to ReThink!</h1>
+        <div class ="text">
+            <p>This is a website that provides a platform for you to practice your mental math skills</p>
 
-   </div>
+    </div>
 </main>
 {% endblock %}

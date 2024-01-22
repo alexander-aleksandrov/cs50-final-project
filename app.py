@@ -43,7 +43,7 @@ def tiles():
     lastResult = db.execute("SELECT max_level, max_round FROM scores WHERE user_id = ? AND game = ? ORDER BY date DESC LIMIT 1", session["user_id"], game[1])
     lastLevel = lastResult[0]['max_level'] if lastResult else 0
     lastRound = lastResult[0]['max_round'] if lastResult else 0
-    lastAttempt = "Level-" + str(lastLevel) + " Round-" + str(lastRound) 
+    lastAttempt = "Level:" + str(lastLevel) + " Round:" + str(lastRound) 
 
     maxLevel = db.execute("SELECT MAX(max_level) FROM scores WHERE user_id = ? AND game = ?", session["user_id"], game[1])
     maxLevel = maxLevel[0]['MAX(max_level)'] if maxLevel and maxLevel[0]['MAX(max_level)'] is not None else 0

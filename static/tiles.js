@@ -67,6 +67,7 @@ async function setupLevel(){
 
 function updateScoreUI() {
     score.innerHTML = `Level: ${level} Round: ${round} Tiles left: ${tilesLeft}`;
+    //count a max result for this game run
     if (maxLevel < level) {
         maxLevel = level;
     }
@@ -127,19 +128,19 @@ tilesContainer.addEventListener("click", (e) => {
                     tilesLeft--;
                     updateScoreUI();
                     setTimeout(() => {
-                        checkEndofRound();
+                        checkEndOfLevelRound();
                     }, 200);
                 } else {
-                isEventHandlingEnabled = false;
-                button.classList.add("tile-wrong");
-                if (round > 1) {
-                    round--;
-                    updateScoreUI();
-                }
-                setTimeout(() => {
-                    button.classList.remove("tile-wrong");
-                    createNewTable();
-                }, 2000);
+                    isEventHandlingEnabled = false;
+                    button.classList.add("tile-wrong");
+                    if (round > 1) {
+                        round--;
+                        updateScoreUI();
+                    }
+                    setTimeout(() => {
+                        button.classList.remove("tile-wrong");
+                        createNewTable();
+                    }, 2000);
                 }
             }   
     }
@@ -147,10 +148,10 @@ tilesContainer.addEventListener("click", (e) => {
 });
 
 // Checks if there are any selected tiles left. If yes - increases to a new level and resets round to 1. If no - increases round by 1.
-function checkEndofRound(){
+function checkEndOfLevelRound(){
     let selected = document.getElementsByClassName("tile-selected");
     if (selected.length == 0){
-        if (isLevelOwerflow()){
+        if (round > level*level/2){
             level++;
             round = 1;
         }else{
@@ -159,10 +160,6 @@ function checkEndofRound(){
         createNewTable();
         updateScoreUI();
     }
-}
-
-function isLevelOwerflow(){
-    return round > level*level/2;
 }
 
 function selectTiles(arr, round){

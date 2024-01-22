@@ -23,6 +23,9 @@
     </div>
 
     <div class="answers"></div>
+    <div class="rules" style="font-size: medium;">
+      Choose the correct answer from the options below. For every correct answer you get 1 point and 2 seconds of bonus time. Initialy you have 60 seconds to answer as many questions as you can. For every wrong answer you lose 1 second of your time and 1 score point. Try your best!
+    </div>
     <button id="button">Begin</button>
   </div>
   <div class="stats">
@@ -30,11 +33,23 @@
       <tbody>
         <tr>
           <th class="th-label">Your Highest Score: </th>
-          <td>{{highScore}}</td>
+          <td>
+            {% if highScore is none %}
+                0
+            {% else %}
+                {{highScore}}
+            {% endif %}
+          </td>
         </tr>
         <tr>
           <th class="th-label">Total solved:  </th>
-          <td>{{totalSolved}}</td>
+          <td>
+            {% if totalSolved is none %}
+                0
+            {% else %}
+                {{totalSolved}}
+            {% endif %}
+          </td>
         </tr>
       </tbody>
     </table>

@@ -7,9 +7,11 @@ const score = document.querySelector(".score");
 const timer = document.querySelector(".timer");
 const answers = document.querySelector(".answers");
 const variants = document.getElementsByClassName("variant");
+const rules = document.querySelector(".rules");
+const example = document.querySelector(".example");
 
-createNewExample();
-setAnswerToQuestion();
+example.style.display = "none";
+rules.style.display = "flex";
 
 let int = 0;
 let counter = 0;
@@ -17,6 +19,8 @@ let running = false;
 let interval = 0;
 
 const start = () => {
+  example.style.display = "flex";
+  rules.style.display = "none";
   createNewExample();
   counter = 0;
   interval = 60;
@@ -51,10 +55,11 @@ const stop = () => {
   clearInterval(int);
   timer.innerHTML = "60 sec";
   button.textContent = "Begin";
+  rules.style.display = "flex";
+  example.style.display = "none";
   button.classList.remove("started");
   answers.innerHTML = "";
   
-  setAnswerToQuestion();
   score.innerHTML = `Last Score: ${counter}`;
 
   const data = {score: counter};
@@ -125,13 +130,13 @@ function checkAnswer(i) {
     score.innerHTML = `Score: ${++counter}`;
     createNewExample();
     createVariants();
-    changeTimer(+5);
+    changeTimer(+2);
   } else {
     calcResult.classList.remove("no-answer");
     calcResult.classList.add("wrong");
     calcResult.classList.add("accepted");
     score.innerHTML = `Score: ${--counter}`;
-    changeTimer(-2);
+    changeTimer(-1);
     setTimeout(() => {
       calcResult.classList.remove("accepted");
     }, 500);
