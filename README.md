@@ -7,7 +7,6 @@
 3. Site 
 4. JS Games 
 
-add listeners
-make stop function 
-make listeners 
-make scores savings 
+exit inside round 
+renew page - deletes progress 
+reset rounds on level 

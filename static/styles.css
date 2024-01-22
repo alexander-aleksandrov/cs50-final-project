@@ -155,7 +155,15 @@
   .answers {
     width: 350px;
   }
-  
+  .rules{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 350px;
+    font-size: 1.5rem;
+    margin: 50px auto;
+  }
   .tiles {
     display: flex;
     flex-direction: column;
@@ -179,9 +187,11 @@
     background-color: #565851;
   }
   .tile-correct {
-
+    background-color: #c4eb64;
   }
-  .tile-wrong{}
+  .tile-wrong{
+    background-color: #e7582c;
+  }
 
   .lvl2, .lvl3, .lvl4{
     height: 81px;

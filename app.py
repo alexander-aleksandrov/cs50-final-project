@@ -39,12 +39,41 @@ def index():
 @login_required
 def tiles():
     script = "/static/tiles.js"  
-    result = db.execute("SELECT score FROM scores WHERE user_id = ? AND game = ? ORDER BY date DESC LIMIT 1", session["user_id"], game[0])
-    lastScore = result[0]['score'] if result else 0
-    highScore = db.execute("SELECT MAX(score) FROM scores WHERE user_id = ? AND game = ?", session["user_id"], game[1])[0]['MAX(score)']
-    totalSolved = db.execute("SELECT SUM(score) FROM scores WHERE user_id = ? AND game = ? AND score > 0", session["user_id"], game[1])[0]['SUM(score)']
 
-    return render_template("tiles.html", script=script, lastScore=lastScore, highScore=highScore, totalSolved= totalSolved)
+    lastResult = db.execute("SELECT max_level, max_round FROM scores WHERE user_id = ? AND game = ? ORDER BY date DESC LIMIT 1", session["user_id"], game[1])
+    lastLevel = lastResult[0]['max_level'] if lastResult else 0
+    lastRound = lastResult[0]['max_round'] if lastResult else 0
+    lastAttempt = "Level-" + str(lastLevel) + " Round-" + str(lastRound) 
+
+    maxLevel = db.execute("SELECT MAX(max_level) FROM scores WHERE user_id = ? AND game = ?", session["user_id"], game[1])
+    maxLevel = maxLevel[0]['MAX(max_level)'] if maxLevel and maxLevel[0]['MAX(max_level)'] is not None else 0
+    maxRound = db.execute("SELECT MAX(max_round) FROM scores WHERE user_id = ? AND game = ?", session["user_id"], game[1])
+    maxRound = maxRound[0]['MAX(max_round)'] if maxRound and maxRound[0]['MAX(max_round)'] is not None else 0
+    
+    return render_template("tiles.html", script=script, lastAttempt=lastAttempt, maxLevel=maxLevel, maxRound=maxRound)
+
+@app.route("/get-tiles-level")
+@login_required
+def get_tiles_level():
+    lastResult = db.execute("SELECT max_level, max_round FROM scores WHERE user_id = ? AND game = ? ORDER BY date DESC LIMIT 1", session["user_id"], game[1])
+    lastLevel = lastResult[0]['max_level'] if lastResult and lastResult[0]['max_level'] is not None else 0
+    lastRound = lastResult[0]['max_round'] if lastResult and lastResult[0]['max_round'] is not None else 0
+    return {"lastLevel": lastLevel, "lastRound": lastRound}
+
+@app.route("/record-tiles-score", methods=["GET", "POST"])
+@login_required
+def end_tiles_round():
+    if request.method == "POST":
+        user_id = session["user_id"]
+        data = request.get_json()
+        maxLevel = data["maxLevel"]
+        maxRound = data["maxRound"]
+        date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+        db.execute("INSERT INTO scores (user_id, game, max_level, max_round, date) VALUES (?, ?, ?, ?, ?)", user_id, game[1], maxLevel, maxRound, date)
+        return redirect("/tiles")
+    else:
+        return redirect("/tiles")
 
 @app.route("/multiply")
 @login_required

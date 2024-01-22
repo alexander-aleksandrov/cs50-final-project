@@ -11,25 +11,21 @@
 {% block main %}
 <main class="main-container">
   <div class="game">
-    <div class="score yl ">Last Score: {{lastScore}}</div>
+    <div class="score  ">Last attempt: {{lastAttempt}}</div>
 
-    <div class="example yl">
-      test
+    <div class="rules">
+      Try to remember the pattern of the tiles. When they disapear click on them.
     </div>
 
-    <div class="tiles"></div>
+    <div class="tiles" id="tiles" ></div>
     <button id="button">Begin</button>
   </div>
-  <div class="stats yl">
+  <div class="stats ">
     <table>
       <tbody>
         <tr>
-          <th class="th-label">Your Highest Score: </th>
-          <td>{{highScore}}</td>
-        </tr>
-        <tr>
-          <th class="th-label">Total solved:  </th>
-          <td>{{totalSolved}}</td>
+          <th class="th-label">You've reached: </th>
+          <td>Level:{{maxLevel}} Round:{{maxRound}}</td>
         </tr>
       </tbody>
     </table>
