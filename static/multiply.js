@@ -7,7 +7,7 @@ const score = document.querySelector(".score");
 const timer = document.querySelector(".timer");
 const answers = document.querySelector(".answers");
 const variants = document.getElementsByClassName("variant");
-const rules = document.querySelector(".rules");
+const rules = document.querySelector(".multiply-rules");
 const example = document.querySelector(".example");
 
 example.style.display = "none";

@@ -12,21 +12,21 @@
     </head>
 
     <body>
-        <nav class="navbar yl">
+        <nav class="navbar ">
                 <div>
                     <a class="navbar-brand" href="/">
                         <img src="/static/logo.png" width="60" alt="Home">
                         ReThink
                     </a>
                 </div>
-                <div class="navbar-menu yl" id="navbar">
+                <div class="navbar-menu " id="navbar">
                     {% if session["user_id"] %}
-                    <div class="navbar-menu yl" id="not-authorized">
-                        <ul class="navbar-nav yl">
-                            <li class="nav-item"><a class="nav-link" href="/multiply" id="multiply-link" >Multiply Challenge</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/tiles" id="tiles-link" >Memory Tiles</a></li>
+                    <div class="navbar-menu " id="not-authorized">
+                        <ul class="navbar-left ">
+                            <li class="nav-item "><a class="nav-link" href="/multiply" id="multiply-link" >Multiply Challenge</a></li>
+                            <li class="nav-item "><a class="nav-link" href="/tiles" id="tiles-link" >Memory Tiles</a></li>
                         </ul>
-                        <ul class="navbar-nav">
+                        <ul class="navbar-right ">
                             <li class="nav-item"><a class="nav-link" href="/changepass">Change Password</a></li>
                             <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
                         </ul>

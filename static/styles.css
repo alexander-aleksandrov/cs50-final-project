@@ -67,17 +67,17 @@
 
   .home-text{
     order:2;
-    padding: 10px;
+    padding: 20px;
     flex:5;
-
   }
+
   .home-text .header{
     font-size: 24px;
   }
   .home-text .text{
     display: flex;
     justify-content: center;
-    font-size: 18px;
+    font-size: 1.5rem;
 
   }
   .game {
@@ -204,6 +204,15 @@
     font-size: 1.5rem;
     margin: 50px auto;
   }
+  .multiply-rules{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    font-size: 1.5rem;
+  }
+
   .tiles {
     display: flex;
     flex-direction: column;
@@ -347,11 +356,37 @@
     justify-content: space-between;
     align-items: center;
   }
+  .navbar-left{
+    display: flex;
+    list-style: none;
+    justify-content: space-evenly;
+    padding-inline-start: 0px;  
+  }
+  .navbar-left li{
+    padding: 20px;
+    font-size: 1.5rem;
+  }
+  .navbar-right{
+    display: flex;
+    list-style: none;
+    flex-direction: column;
+  }
+  .navbar-right li{
+    padding: 10px;
+    font-size: 1rem;
+  }
   .navbar-login{
     display: flex;
     width : auto;
+    list-style: none;
     flex-direction: column;
+    gap: 10px;
     justify-content: end;
+  }
+
+  .navbar-login li{
+    padding: 10px;
+    font-size: 1rem;
   }
 
   
