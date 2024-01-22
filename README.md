@@ -6,7 +6,3 @@
 2. Flask app
 3. Site 
 4. JS Games 
-
-exit inside round 
-renew page - deletes progress 
-reset rounds on level 
